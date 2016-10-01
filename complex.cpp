@@ -6,7 +6,11 @@ class complex {
 		double _b;
 	
 		static double _getR(const complex *c);
+		static double _getAngle(const complex *c);
 		static complex _getUnit(const complex *c);
+		
+		static void _setR(complex *c, double r);
+		static void _setAngle(complex *c, double x);
 		
 		static complex _add(const complex *c, const complex *d);
 		static complex _minus(const complex *c, const complex *d);
@@ -21,7 +25,10 @@ class complex {
 		complex(double __a, double __b);
 		complex();
 		
+		static const char *EXCEPTION_ZERO_RADIUS;
+		
 		double R() const;
+		double GetAngle() const;
 		complex unit() const;
 		
 		complex add(complex val) const;
@@ -51,15 +58,46 @@ class complex {
 		
 		double a() const;
 		double b() const;
+		
+		static complex GetRotation(double x);
+		
+		complex& SetA(double __a);
+		complex& SetB(double __b);
+		
+		complex& SetR(double r);
+		complex& SetAngle(double x);
 };
 
 double complex::_getR(const complex *c) {
 	return sqrt(c->_a * c->_a + c->_b * c->_b);
 }
 
+double complex::_getAngle(const complex *c) {
+	return acos(_getUnit(c)._a);
+}
+
 complex complex::_getUnit(const complex *c) {
 	double r = _getR(c);
 	return complex(c->_a / r, c->_b / r);
+}
+
+void complex::_setR(complex *c, double r) {
+	complex _c;
+	double _r = _getR(c);
+	if(_r == 0) throw EXCEPTION_ZERO_RADIUS;
+	_c = _mul(c, r / _r);
+	*c = _c;
+}
+
+void complex::_setAngle(complex *c, double x) {
+	complex _c, _r;
+	double _x, r;
+	r = _getR(c);
+	if(r == 0) return;
+	_x = _getAngle(c);
+	_r = GetRotation(x - _x);
+	_c = _mul(c, &_r);
+	*c = _c;
 }
 
 complex complex::_add(const complex *c, const complex *d) {
@@ -105,8 +143,14 @@ complex::complex() {
 	_a = _b = 0;
 }
 
+const char* complex::EXCEPTION_ZERO_RADIUS = "EXCEPTION_ZERO_RADIUS";
+
 double complex::R() const {
 	return _getR(this);
+}
+
+double complex::GetAngle() const {
+	return _getAngle(this);
 }
 
 complex complex::unit() const {
@@ -211,4 +255,28 @@ double complex::a() const {
 
 double complex::b() const {
 	return _b;
+}
+
+complex complex::GetRotation(double x) {
+	return complex(cos(x), sin(x));
+}
+
+complex& complex::SetA(double __a) {
+	_a = __a;
+	return *this;
+}
+
+complex& complex::SetB(double __b) {
+	_b = __b;
+	return *this;
+}
+
+complex& complex::SetR(double r) {
+	_setR(this, r);
+	return *this;
+}
+
+complex& complex::SetAngle(double x) {
+	_setAngle(this, x);
+	return *this;
 }

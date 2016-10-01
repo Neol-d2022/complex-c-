@@ -4,7 +4,11 @@ class complex {
 		double _b;
 	
 		static double _getR(const complex *c);
+		static double _getAngle(const complex *c);
 		static complex _getUnit(const complex *c);
+		
+		static void _setR(complex *c, double r);
+		static void _setAngle(complex *c, double x);
 		
 		static complex _add(const complex *c, const complex *d);
 		static complex _minus(const complex *c, const complex *d);
@@ -19,7 +23,10 @@ class complex {
 		complex(double __a, double __b);
 		complex();
 		
+		static const char *EXCEPTION_ZERO_RADIUS;
+		
 		double R() const;
+		double GetAngle() const;
 		complex unit() const;
 		
 		complex add(complex val) const;
@@ -49,4 +56,12 @@ class complex {
 		
 		double a() const;
 		double b() const;
+		
+		static complex GetRotation(double x);
+		
+		complex& SetA(double __a);
+		complex& SetB(double __b);
+		
+		complex& SetR(double r);
+		complex& SetAngle(double x);
 };
