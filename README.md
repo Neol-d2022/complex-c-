@@ -57,6 +57,7 @@ Don't forget to *include* the header file `` #include "complex.h" ``
 
 *	**`` double complex::GetAngle() const ``** (*member function*)
 	*	Returns *angle* to +x axis.
+	*	If the radius is **0**, the function **throw** a `` const char * `` **exception** **`` complex::EXCEPTION_ZERO_RADIUS ``**.
 	*	For example:
 
 			printf("%lf\n", complex(3, 4).GetAngle());
@@ -66,6 +67,7 @@ Don't forget to *include* the header file `` #include "complex.h" ``
 
 *	**`` complex complex::unit() const ``** (*member function*)
 	*	Return *unit complex* object, whose radius is exactly `` 1 ``.
+	*	If the radius is **0**, the function **throw** a `` const char * `` **exception** **`` complex::EXCEPTION_ZERO_RADIUS ``**.
 	*	For example:
 
 			complex a(3, 4);
@@ -112,7 +114,7 @@ Don't forget to *include* the header file `` #include "complex.h" ``
 *	**`` complex& complex::SetR(double r) ``** (*member function*)
 	*	Sets *radius* of this complex number to  `` r ``.
 	*	Returns reference to *itself*.
-	*	If the radius is **already 0**, the function **throw** a `` const char * `` **exception** **`` complex::EXCEPTION_ZERO_RADIUS ``**.
+	*	If the radius is **0**, the function **throw** a `` const char * `` **exception** **`` complex::EXCEPTION_ZERO_RADIUS ``**.
 	*	For example:
 
 			complex a(3, 4);
@@ -125,7 +127,7 @@ Don't forget to *include* the header file `` #include "complex.h" ``
 *	**`` complex& complex::SetAngle(double x) ``** (*member function*)
 	*	Sets *angle* of this complex number to  `` x ``.
 	*	Returns reference to *itself*.
-	*	If the radius is **already 0**, the function does **nothing**.
+	*	If the radius is **0**, the function does **nothing**.
 	*	For example:
 
 			complex a(3, 4);
@@ -304,6 +306,7 @@ Don't forget to *include* the header file `` #include "complex.h" ``
 
 *	**`` double complex::GetAngle() const ``** (*Θㄧ计*)
 	*	肚硂狡计籔タx禸*à*.
+	*	狦硂狡计畖琌 **0**, 硂ㄧ计盢 **耏** 篈 `` const char * ``  **ㄒ(exception)** **`` complex::EXCEPTION_ZERO_RADIUS ``**.
 	*	絛ㄒ:
 
 			printf("%lf\n", complex(3, 4).GetAngle());
@@ -313,6 +316,7 @@ Don't forget to *include* the header file `` #include "complex.h" ``
 
 *	**`` complex complex::unit() const ``** (*Θㄧ计*)
 	*	肚*虫狡计*, ウ畖タ琌 `` 1 ``.
+	*	狦硂狡计畖琌 **0**, 硂ㄧ计盢 **耏** 篈 `` const char * ``  **ㄒ(exception)** **`` complex::EXCEPTION_ZERO_RADIUS ``**.
 	*	絛ㄒ:
 
 			complex a(3, 4);
@@ -359,7 +363,7 @@ Don't forget to *include* the header file `` #include "complex.h" ``
 *	**`` complex& complex::SetR(double r) ``** (*Θㄧ计*)
 	*	盢硂狡计 *畖* 砞  `` r ``.
 	*	肚 ** 把酚.
-	*	狦硂狡计畖 **竒琌0**, 硂ㄧ计盢 **耏** 篈 `` const char * ``  **ㄒ(exception)** **`` complex::EXCEPTION_ZERO_RADIUS ``**.
+	*	狦硂狡计畖琌 **0**, 硂ㄧ计盢 **耏** 篈 `` const char * ``  **ㄒ(exception)** **`` complex::EXCEPTION_ZERO_RADIUS ``**.
 	*	絛ㄒ:
 
 			complex a(3, 4);
@@ -372,7 +376,7 @@ Don't forget to *include* the header file `` #include "complex.h" ``
 *	**`` complex& complex::SetAngle(double x) ``** (*Θㄧ计*)
 	*	盢硂狡计籔x禸 *à* 砞  `` x ``.
 	*	肚 ** 把酚.
-	*	狦硂狡计畖 **竒琌0**, 硂ㄧ计盢 **ぃ暗ヴㄆ**.
+	*	狦硂狡计畖琌 **0**, 硂ㄧ计盢 **ぃ暗ヴㄆ**.
 	*	絛ㄒ:
 
 			complex a(3, 4);

@@ -78,6 +78,7 @@ double complex::_getAngle(const complex *c) {
 
 complex complex::_getUnit(const complex *c) {
 	double r = _getR(c);
+	if(r == 0) throw EXCEPTION_ZERO_RADIUS;
 	return complex(c->_a / r, c->_b / r);
 }
 
